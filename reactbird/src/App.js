@@ -8,12 +8,19 @@ const apiConfig = {
 }
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      voiceList: []
+    }
+  }
 
   componentDidMount() {
 
     axios.get('https://custom.lyrebird.ai/api/v0/voices', apiConfig )
     .then(res => {
-      console.log("res", res.data)
+      this.setState({ voiceList: res.data.results});
+    console.log(this.state.voiceList)
     })
     .catch(error => {
       console.log("error", error)
