@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+
 import Router from './Routes';
+
 const API_KEY = process.env.REACT_APP_LYREBIRD_API_KEY;
 const apiConfig = {
   headers: { Authorization: API_KEY }
 }
+
+const Navigation = (props) => <nav>
+  <ul>
+    <li><NavLink to='/voices'>Voice List</NavLink></li>
+    <li><NavLink to='/voice/:id'>Voice</NavLink></li>
+  </ul>
+</nav>
+
 
 class App extends Component {
 
@@ -23,8 +34,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>LyreBird</h1>
-
+        <Navigation />
         <Router />
       </div>
     );
