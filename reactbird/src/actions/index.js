@@ -1,3 +1,4 @@
+import { LIST_VOICES, CREATE_UTTERANCE, LIST_UTTERANCES, ASYNC_STATUS } from './types'
 import axios from 'axios';
 const API_KEY = process.env.REACT_APP_LYREBIRD_API_KEY;
 const apiConfig = {
@@ -7,9 +8,11 @@ const apiConfig = {
 export const listVoices = () => dispatch => {
   axios.get('https://custom.lyrebird.ai/api/v0/voices?offset=0&limit=10', apiConfig )
   .then(res => {
+    console.log('voices call ', res)
+    let voices = res.data.results;
     dispatch({
       type: LIST_VOICES,
-      payload: res.data.results
+      payload: voices
     });
   })
   .catch(error => {
@@ -21,7 +24,9 @@ export const createUtterance = (text, voiceId) => dispatch => {
   axios({
     method: 'post',
     url: `https://custom.lyrebird.ai/api/v0/voices/${voiceId}/generate_async`,
-    apiConfig,
+    headers: {
+      Authorization: 'Bearer ' + API_KEY
+    },
     data: [
       {
         text: text,
@@ -30,9 +35,9 @@ export const createUtterance = (text, voiceId) => dispatch => {
         }
       }
     ]
-  )}
+  })
   .then(audio => {
-    console.log("utterance crated: ", audio)// delete later
+    console.log("utterance crated: ", audio);// delete later
     dispatch({
       type: CREATE_UTTERANCE,
       payload: audio

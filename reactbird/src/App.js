@@ -5,12 +5,14 @@ import Router from './Routes';
 
 
 const Navigation = (props) =>
-  <nav>
-    <ul>
-      <li><NavLink to='/'>Dashboard</NavLink></li>
-      <li><NavLink to='/:id/new'>Voice List</NavLink></li>
-      <li><NavLink to='/utterances'>Your Utterances</NavLink></li>
-    </ul>
+
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <button><NavLink to='/'>Dashboard</NavLink></button>
+      <button><NavLink to='/voices'>Voice List</NavLink></button>
+      <button><NavLink to='/:id/new'>Create Utterance</NavLink></button>
+      <button><NavLink to='/utterances'>Your Utterances</NavLink></button>
+    </div>
   </nav>
 
   class App extends React.Component {
