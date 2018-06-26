@@ -1,9 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import VoicesList from '../Features/voice-list';
+class MainPage extends React.Component {
 
-export default function Main(props) {
-  return <div>
-    <h2>Main</h2>
-  </div>
+
+  render() {
+
+    return (
+      <div>Main</div>
+    )
+  }
 }
+
+export default MainPage;
