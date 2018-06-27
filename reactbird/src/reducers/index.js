@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
 import AllReducers from "./AllReducers";
 
-const rootReducer = combineReducers({
+export default combineReducers({
   voices: AllReducers
 });
-
-export default rootReducer;

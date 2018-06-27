@@ -10,7 +10,6 @@ const Navigation = (props) =>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <button><NavLink to='/'>Dashboard</NavLink></button>
       <button><NavLink to='/voices'>Voice List</NavLink></button>
-      <button><NavLink to='/:id/new'>Create Utterance</NavLink></button>
       <button><NavLink to='/utterances'>Your Utterances</NavLink></button>
     </div>
   </nav>

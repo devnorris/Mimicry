@@ -1,4 +1,4 @@
-import { LIST_VOICES, CREATE_UTTERANCE, LIST_UTTERANCES, ASYNC_STATUS } from '../actions/types'
+import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS } from '../actions/types'
 
 let defaultState = {
   voices: []
@@ -6,13 +6,13 @@ let defaultState = {
 
 export default function(state = defaultState, action) {
   console.log("switch ", action);
- switch(action.type) {
-  case 'LIST_VOICES':
+  switch(action.type) {
+    case 'LIST_VOICES':
     return {
       ...state,
       voices: action.payload
     };
-  case 'CREATE_UTTERANCE':
+  case 'CREATE_AUDIO':
     return {
       ...state,
       audio: action.payload
