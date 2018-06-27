@@ -17,13 +17,13 @@ export const listVoices = () => dispatch => {
   .catch(error => {
     console.log("LIST VOICES error", error);
   });
-}
+};
 
 export const createAudio = (text, voiceId) => dispatch => {
+  console.log(text, voiceId)
   axios({
-    method: 'POST',
+    method: 'post',
     url: `https://custom.lyrebird.ai/api/v0/voices/${voiceId}/generate_async`,
-    apiConfig,
     data: [
       {
         text: text,
@@ -31,7 +31,10 @@ export const createAudio = (text, voiceId) => dispatch => {
           'emotion': 'calm'
         }
       }
-    ]
+    ],
+    headers: {
+      Authorization: API_KEY
+    }
   })
   .then(audio => {
     console.log("audio created: ", audio);// delete later

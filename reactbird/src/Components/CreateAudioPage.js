@@ -1,47 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { createAudio } from '../actions/actionCreators';
-import { Container, Row, Col, Form } from 'reactstrap';
-import { Link } from 'react-router-dom'
 
 class CreateAudioPage extends React.Component {
-  constructor() {
-    super();
-
-    this.onSubmit = this.onSubmit.bind(this)
-  }
 
 
-onSubmit(e) {
-  console.log("e.target", e.target)
-  const text = e.target.value;
-  const voiceId = this.props.match.params.id;
-  console.log("voice", voiceId)
-  this.props.createAudio(text, voiceId);
+ onSubmit = (e) => {
+   e.preventDefault();
+  const text = e.target[0].value;
+  const id = this.props.match.params.id;
+  this.props.createAudio(text, id);
 }
 
 
   render() {
-    console.log("props", this.props);
     return(
       <div className="CreateAudioPage">
-      <h2></h2>
         <p>Add text and on submit, watch the magic happen</p>
-        <Form className="CreateAudio" onSubmit={this.onSubmit}>
-          <div className="form">
-            <textarea name="textarea" ></textarea>
+        <form className="CreateAudio" onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <textarea name="textarea"></textarea>
           </div>
-          <button type='Submit' value='Send'>Submit</button>
-        </Form>
+          <button type='submit'>Create</button>
+        </form>
       </div>
     )
   }
 }
 
-CreateAudioPage.propTypes = {
-  createAudio: PropTypes.func.isRequired
-}
+// CreateAudioPage.propTypes = {
+//   createAudio: PropTypes.func.isRequired
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     createAudio: bindActionCreators(createAudio, dispatch)
+//   }
+// }
 
 
 export default connect(null, { createAudio })(CreateAudioPage);

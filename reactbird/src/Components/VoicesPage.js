@@ -1,14 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { listVoices } from '../actions/actionCreators';
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 class VoicesPage extends React.Component {
-
-componentDidMount() {
-  this.props.listVoices()
-}
 
   render() {
     const voiceList = this.props.voices;
@@ -38,15 +34,5 @@ componentDidMount() {
 
 }
 
-const mapStateToProps= state => ({
-  voices: state.voices.voices,
-  audio: state.audio
-});
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     listVoices: bindActionCreators(listVoices, dispatch)
-//   }
-// }
-
-export default connect(mapStateToProps, { listVoices })(VoicesPage);
+export default connect(null, { listVoices })(VoicesPage);
