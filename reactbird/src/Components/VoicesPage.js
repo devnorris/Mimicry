@@ -39,7 +39,8 @@ componentDidMount() {
 }
 
 const mapStateToProps= state => ({
-  voices: state.voices.voices
+  voices: state.voices.voices,
+  audio: state.audio
 });
 
 // function mapDispatchToProps(dispatch) {
