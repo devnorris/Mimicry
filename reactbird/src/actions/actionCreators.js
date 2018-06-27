@@ -19,7 +19,7 @@ export const listVoices = () => dispatch => {
   });
 }
 
-export const createUtterance = (text, voiceId) => dispatch => {
+export const createAudio = (text, voiceId) => dispatch => {
   axios({
     method: 'post',
     url: `https://custom.lyrebird.ai/api/v0/voices/${voiceId}/generate_async`,
@@ -36,7 +36,7 @@ export const createUtterance = (text, voiceId) => dispatch => {
     ]
   })
   .then(audio => {
-    console.log("utterance crated: ", audio);// delete later
+    console.log("audio crated: ", audio);// delete later
     dispatch({
       type: CREATE_AUDIO,
       payload: audio

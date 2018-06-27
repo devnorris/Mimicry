@@ -1,7 +1,8 @@
 import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS } from '../actions/types'
 
 let defaultState = {
-  voices: []
+  voices: [],
+  audio: []
 };
 
 export default function(state = defaultState, action) {
