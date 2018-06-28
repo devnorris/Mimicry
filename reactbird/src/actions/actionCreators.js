@@ -1,4 +1,4 @@
-import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_JOBS, ASYNC_STATUS } from './types'
+import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_JOBS, ASYNC_STATUS, DOWNLOAD_UTTERANCE } from './types'
 import axios from 'axios';
 const API_KEY = process.env.REACT_APP_LYREBIRD_API_KEY;
 const apiConfig = {
@@ -84,5 +84,18 @@ export const asyncStatus = (asyncJobId) => dispatch => {
   })
   .catch(error => {
     console.log("ASYNC STATUS error", error);
+  })
+}
+
+export const downloadUtterance = (utteranceId) => dispatch => {
+  axios.get(`https://custom.lyrebird.ai/api/v0/utterances/${utteranceId}/download`, apiConfig)
+  .then(download => {
+    dispatch({
+      type: DOWNLOAD_UTTERANCE,
+      payload: download
+    });
+  })
+  .catch(error => {
+    console.log("DOWNLOAD FILE error", error)
   })
 }

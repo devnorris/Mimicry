@@ -1,4 +1,4 @@
-import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS } from '../actions/types'
+import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS, ASYNC_JOBS, DOWNLOAD_UTTERANCE } from '../actions/types'
 
 let defaultState = {
   voices: [],
@@ -33,6 +33,11 @@ export default function(state = defaultState, action) {
     return {
       ...state,
       asyncStatus: action.payload
+    };
+  case 'DOWNLOAD_UTTERANCE':
+    return {
+      ...state,
+      download: action.payload
     };
   default:
     return state;

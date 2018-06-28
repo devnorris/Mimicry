@@ -1,14 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { listUtterances } from '../actions/actionCreators';
+import { listUtterances, downloadUtterance } from '../actions/actionCreators';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
 class UtterancesPage extends React.Component {
 
 componentDidMount() {
-  this.props.listUtterances()
+  this.props.listUtterances();
+  this.props.downloadUtterance();
+}
+
+onClick = (e) => {
+  e.preventDefault();
+  this.props.downloadUtterance()
+
 }
 
   render() {
@@ -25,6 +34,9 @@ componentDidMount() {
             <Row key={utterance.id} className="navbar navbar-expand-lg navbar-light bg-light">
               <Col xs="3">{utterance.text}</Col>
               <Col xs="auto">{moment.utc(utterance.created_at).format("MMMM Do YYYY")}</Col>
+              <Col xs="3">
+                <FontAwesomeIcon icon={faDownload} />
+              </Col>
             </Row>
           )
         })}
@@ -41,4 +53,4 @@ const mapStateToProps= state => ({
 });
 
 
-export default connect(mapStateToProps, { listUtterances })(UtterancesPage);
+export default connect(mapStateToProps, { listUtterances, downloadUtterance })(UtterancesPage);
