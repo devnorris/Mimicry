@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { listVoices } from '../actions/actionCreators';
-import { Container, Row, Col } from 'reactstrap';
+import { Table, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 class VoicesPage extends React.Component {
@@ -11,37 +11,45 @@ componentDidMount() {
 }
 
   render() {
-    console.log(this.props)
     const voiceList = this.props.voices;
+    const letsMap =
+    voiceList.map(voice => {
+      return (
+        <tbody>
+          <tr>
+              <td>{voice.name}</td>
+              <td>{voice.description}</td>
+              <td>
+                <Button outline color="primary">
+                  <NavLink href={`/${voice.id}/new`}> Create Audio </NavLink>
+                </Button>
+              </td>
+          </tr>
+          </tbody>
+        )
+      });
+
     return (
-      <div className='voicesPage'>
-        <h2>Voices you have access too:</h2>
-        <div className='voiceList'>
-          <Container>
-            {voiceList.map(voice => {
-              return (
-                <Row key={voice.id} className="navbar navbar-expand-lg navbar-light bg-light">
-                  <Col xs="3">{voice.name}</Col>
-                  <Col xs="auto">{voice.description}</Col>
-                  <Col xs="3">
-                    <button>
-                      <Link to={`/${voice.id}/new`}> Create Audio </Link>
-                    </button>
-                  </Col>
-                </Row>
-              )
-            })}
-          </Container>
-        </div>
-      </div>
+    <div>
+    <br/>
+      <h2>Voices you have access too:</h2>
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Voice Name</th>
+              <th>Description</th>
+              <th>Create</th>
+            </tr>
+          </thead>
+            {letsMap}
+        </Table>
+    </div>
     )
   }
-
 }
 
 const mapStateToProps= state => ({
   voices: state.voices.voices
 });
-
 
 export default connect(mapStateToProps, { listVoices })(VoicesPage);

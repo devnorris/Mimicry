@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createAudio, asyncJobs } from '../actions/actionCreators';
 import { Link } from 'react-router-dom';
+import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class CreateAudioPage extends React.Component {
 
@@ -25,13 +26,17 @@ class CreateAudioPage extends React.Component {
     console.log(this.props)
     return(
       <div className="CreateAudioPage">
-        <p>Add text and on submit, watch the magic happen</p>
-        <form className="CreateAudio" onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <textarea name="textarea"></textarea>
-          </div>
-          <button type='submit'>Create</button>
-        </form>
+        <Form className="CreateAudio" onSubmit={this.onSubmit}>
+          <FormGroup className="form-group">
+            <Label for="information" size="lg">Create your very own utterance here:</Label>
+            <Col sm={10}>
+              <Input type="textarea" name="text" id="information" multiple />
+            </Col>
+          </FormGroup>
+          <FormGroup>
+              <Button type='submit'>Create</Button>
+          </FormGroup>
+        </Form>
         <br/>
       </div>
     )

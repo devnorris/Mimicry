@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { listUtterances, downloadUtterance } from '../actions/actionCreators';
-import { Container, Row, Col } from 'reactstrap';
+import { Table, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faDownload, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
 class UtterancesPage extends React.Component {
 
@@ -22,30 +22,42 @@ handleClick = (e) => {
   render() {
     console.log(this.props)
     const utteranceList = this.props.voices.utterances;
-    console.log("utterancelist", utteranceList)
+    const letsMap =
+    utteranceList.map(utterance => {
+      return (
+        <tbody>
+          <tr>
+              <td>
+                <FontAwesomeIcon icon={faHeadphones} />
+              </td>
+              <td>{utterance.text}</td>
+              <td>{moment.utc(utterance.created_at).format("MMMM Do YYYY")}</td>
+              <td>
+                <button type='submit' onClick={this.handleClick.bind(this, utterance.id)}>
+                  <FontAwesomeIcon icon={faDownload} />
+                </button>
+              </td>
+          </tr>
+          </tbody>
+        )
+      });
+
     return (
-      <div className='voicesPage'>
-        <h2>Voices you have access too:</h2>
-        <div className='utterancesList'>
-        <Container>
-        {utteranceList.map(utterance => {
-          return (
-            <Row key={utterance.id} className="navbar navbar-expand-lg navbar-light bg-light">
-              <Col xs="3">{utterance.text}</Col>
-              <Col xs="auto">{moment.utc(utterance.created_at).format("MMMM Do YYYY")}</Col>
-              <Col xs="3">
-                <div className="downloadIcon">
-                  <button type='submit' onClick={this.handleClick.bind(this, utterance.id)}>
-                    <FontAwesomeIcon icon={faDownload} />
-                  </button>
-                </div>
-              </Col>
-            </Row>
-          )
-        })}
-        </Container>
-        </div>
-      </div>
+    <div>
+    <br/>
+      <h2>Utterances you have created:</h2>
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Listen</th>
+              <th>Text</th>
+              <th>Date</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+            {letsMap}
+        </Table>
+    </div>
     )
   }
 
