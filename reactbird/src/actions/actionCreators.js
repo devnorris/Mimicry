@@ -1,5 +1,6 @@
 import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_JOBS, ASYNC_STATUS, DOWNLOAD_UTTERANCE } from './types'
 import axios from 'axios';
+import FileSaver from 'file-saver';
 const API_KEY = process.env.REACT_APP_LYREBIRD_API_KEY;
 const apiConfig = {
   headers: { Authorization: API_KEY }

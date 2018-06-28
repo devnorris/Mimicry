@@ -14,10 +14,9 @@ componentDidMount() {
   this.props.downloadUtterance();
 }
 
-onClick = (e) => {
-  e.preventDefault();
-  this.props.downloadUtterance()
-
+handleClick = (e) => {
+  console.log(e)
+  this.props.downloadUtterance(e)
 }
 
   render() {
@@ -35,7 +34,11 @@ onClick = (e) => {
               <Col xs="3">{utterance.text}</Col>
               <Col xs="auto">{moment.utc(utterance.created_at).format("MMMM Do YYYY")}</Col>
               <Col xs="3">
-                <FontAwesomeIcon icon={faDownload} />
+                <div className="downloadIcon">
+                  <button type='submit' onClick={this.handleClick.bind(this, utterance.id)}>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </button>
+                </div>
               </Col>
             </Row>
           )
