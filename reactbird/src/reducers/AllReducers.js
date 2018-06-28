@@ -2,7 +2,8 @@ import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS } from '../act
 
 let defaultState = {
   voices: [],
-  audio: []
+  audio: [],
+  utterances: []
 };
 
 export default function(state = defaultState, action) {
@@ -22,6 +23,11 @@ export default function(state = defaultState, action) {
     return {
       ...state,
       utterances: action.payload
+    };
+  case 'ASYNC_JOBS':
+    return {
+      ...state,
+      jobs: action.payload
     };
   case 'ASYNC_STATUS':
     return {

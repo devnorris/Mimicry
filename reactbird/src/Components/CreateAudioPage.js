@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createAudio } from '../actions/actionCreators';
+import { createAudio, asyncJobs } from '../actions/actionCreators';
+import { Link } from 'react-router-dom';
 
 class CreateAudioPage extends React.Component {
+
+  componentDidMount() {
+    this.props.asyncJobs();
+  }
 
 
  onSubmit = (e) => {
@@ -10,10 +15,14 @@ class CreateAudioPage extends React.Component {
   const text = e.target[0].value;
   const id = this.props.match.params.id;
   this.props.createAudio(text, id);
+  // this.props.asyncJobs(this.props.audio.data);
+  e.target[0].value = "";
 }
 
 
+
   render() {
+    console.log(this.props)
     return(
       <div className="CreateAudioPage">
         <p>Add text and on submit, watch the magic happen</p>
@@ -23,20 +32,16 @@ class CreateAudioPage extends React.Component {
           </div>
           <button type='submit'>Create</button>
         </form>
+        <br/>
       </div>
     )
   }
 }
 
-// CreateAudioPage.propTypes = {
-//   createAudio: PropTypes.func.isRequired
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     createAudio: bindActionCreators(createAudio, dispatch)
-//   }
-// }
+const mapStateToProps= state => ({
+  audio: state.voices.audio,
+  asyncJobs: state.voices.asyncJobs
+});
 
 
-export default connect(null, { createAudio })(CreateAudioPage);
+export default connect(mapStateToProps, { createAudio, asyncJobs })(CreateAudioPage);

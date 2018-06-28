@@ -1,12 +1,17 @@
 import React from 'react';
-import { listVoices } from '../actions/actionCreators';
 import { connect } from 'react-redux';
+import { listVoices } from '../actions/actionCreators';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 class VoicesPage extends React.Component {
 
+componentDidMount() {
+  this.props.listVoices()
+}
+
   render() {
+    console.log(this.props)
     const voiceList = this.props.voices;
     return (
       <div className='voicesPage'>
@@ -34,5 +39,9 @@ class VoicesPage extends React.Component {
 
 }
 
+const mapStateToProps= state => ({
+  voices: state.voices.voices
+});
 
-export default connect(null, { listVoices })(VoicesPage);
+
+export default connect(mapStateToProps, { listVoices })(VoicesPage);

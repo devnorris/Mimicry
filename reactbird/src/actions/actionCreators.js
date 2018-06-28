@@ -1,4 +1,4 @@
-import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_STATUS } from './types'
+import { LIST_VOICES, CREATE_AUDIO, LIST_UTTERANCES, ASYNC_JOBS, ASYNC_STATUS } from './types'
 import axios from 'axios';
 const API_KEY = process.env.REACT_APP_LYREBIRD_API_KEY;
 const apiConfig = {
@@ -20,7 +20,6 @@ export const listVoices = () => dispatch => {
 };
 
 export const createAudio = (text, voiceId) => dispatch => {
-  console.log(text, voiceId)
   axios({
     method: 'post',
     url: `https://custom.lyrebird.ai/api/v0/voices/${voiceId}/generate_async`,
@@ -50,7 +49,8 @@ export const createAudio = (text, voiceId) => dispatch => {
 
 export const listUtterances = () => dispatch => {
   axios.get('https://custom.lyrebird.ai/api/v0/utterances?offset=0&limit=10', apiConfig )
-  .then(utterances => {
+  .then(res => {
+    let utterances = res.data.results;
     dispatch({
       type: LIST_UTTERANCES,
       payload: utterances
@@ -59,6 +59,19 @@ export const listUtterances = () => dispatch => {
   .catch(error => {
     console.log("LIST UTERANCES error", error);
   });
+}
+
+export const asyncJobs = () => dispatch => {
+  axios.get(`https://custom.lyrebird.ai/api/v0/async_jobs`, apiConfig )
+  .then(jobs => {
+    dispatch({
+      type: ASYNC_JOBS,
+      payload: jobs
+    });
+  })
+  .catch(error => {
+    console.log("ASYNC STATUS error", error);
+  })
 }
 
 export const asyncStatus = (asyncJobId) => dispatch => {
