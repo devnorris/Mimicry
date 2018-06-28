@@ -7,7 +7,6 @@ let defaultState = {
 };
 
 export default function(state = defaultState, action) {
-  console.log("switch ", action);
   switch(action.type) {
     case 'LIST_VOICES':
     return {
