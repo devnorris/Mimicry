@@ -4,6 +4,18 @@ import { createAudio } from '../actions/actionCreators';
 import { Link } from 'react-router-dom';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
+const textStyle = {
+  fontSize: '30px',
+  textAlign: 'center',
+  color: 'lightskyblue'
+}
+
+const textToLink = {
+  fontSize: '22px',
+  textAlign: 'center',
+  color: 'black'
+}
+
 class CreateAudioPage extends React.Component {
 
 
@@ -15,27 +27,23 @@ class CreateAudioPage extends React.Component {
   e.target[0].value = "";
 }
 
-
-
-
-
   render() {
     console.log(this.props)
     return(
       <div className="CreateAudioPage">
         <Form className="CreateAudio" onSubmit={this.onSubmit}>
           <FormGroup className="form-group">
-            <Label for="information" size="lg">Create your very own utterance here: </Label>
+            <Label for="information" style={textStyle}>Create utterance</Label>
             <Col sm={10}>
-              <Input type="textarea" name="text" id="information" multiple />
+              <Input type="textarea" name="text" id="information" />
             </Col>
           </FormGroup>
           <FormGroup>
               <Button type='submit'>Create</Button>
           </FormGroup>
         </Form>
-          View your most recent utterances<a href='/utterances'> here</a>
         <br/>
+          <h3 style={textToLink}>View your most recent utterances<a href='/utterances'> here</a></h3>
       </div>
     )
   }

@@ -28,7 +28,7 @@ export const createAudio = (text, voiceId) => dispatch => {
       {
         text: text,
         'metadata': {
-          'emotion': 'happy'
+          'emotion': 'calm'
         }
       }
     ],

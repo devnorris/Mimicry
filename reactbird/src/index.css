@@ -1,5 +1,40 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: lightslategray;
+  padding-top: 60px;
+}
+
+.bg-light {
+  position: fixed;
+  background-color: silver!important;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: ghostwhite;
+  font-size: 18px;
+}
+
+.table {
+  background-color: lightskyblue;
+  margin: auto;
+  width: 80%!important;
+  border-radius: 20px;
+  border: solid lightslategray;
+}
+
+.CreateAudioPage {
+  padding-top: 20px;
+}
+
+.btn-secondary {
+  color: black;
+  background-color: lightskyblue;
+  border-color: #6c757d;
+  margin-left: 10px;
 }

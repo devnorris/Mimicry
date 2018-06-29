@@ -7,6 +7,13 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
+
+const textStyle = {
+  fontSize: '40px',
+  textAlign: 'center',
+  color: 'lightskyblue'
+}
+
 class UtterancesPage extends React.Component {
 
 componentDidMount() {
@@ -46,8 +53,8 @@ handleClick = (e) => {
     return (
     <div>
     <br/>
-      <h2>Utterances you have created:</h2>
-        <Table striped>
+      <h2 style={textStyle}>Your Utterances</h2>
+        <Table striped className='utteranceTable'>
           <thead>
             <tr>
               <th>Listen</th>

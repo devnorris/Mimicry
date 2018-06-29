@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faListUl, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faListUl, faCommentDots, faKiwiBird } from '@fortawesome/free-solid-svg-icons';
 import {
   Collapse,
   Navbar,
@@ -16,18 +16,18 @@ import Router from './Routes';
 const Navigation = (props) =>
 
 <Navbar color="light" light expand="md">
-  <NavbarBrand href="/"><h1>Mimicry</h1></NavbarBrand>
+  <NavbarBrand href="/"><h2>Mimicry<FontAwesomeIcon icon={faKiwiBird} /></h2></NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink href="/voices">
-            <h2><FontAwesomeIcon icon={faListUl} /> Voice List</h2>
+            <h3><FontAwesomeIcon icon={faListUl} /> Voice List</h3>
             </NavLink>
           </NavItem>
           <br/>
           <NavItem>
             <NavLink href="/utterances">
-            <h2><FontAwesomeIcon icon={faCommentDots} /> Your Utterances</h2></NavLink>
+            <h3><FontAwesomeIcon icon={faCommentDots} /> Your Utterances</h3></NavLink>
           </NavItem>
         </Nav>
 </Navbar>

@@ -4,6 +4,12 @@ import { listVoices } from '../actions/actionCreators';
 import { Table, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
+const textStyle = {
+  fontSize: '40px',
+  textAlign: 'center',
+  color: 'lightskyblue'
+}
+
 class VoicesPage extends React.Component {
 
 componentDidMount() {
@@ -32,7 +38,7 @@ componentDidMount() {
     return (
     <div>
     <br/>
-      <h2>Voices you have access too:</h2>
+      <h2 style={textStyle}>Voices</h2>
         <Table striped>
           <thead>
             <tr>
