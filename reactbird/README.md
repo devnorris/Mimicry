@@ -6,6 +6,9 @@ Working with Lyrebirds Custom Voice API, Mimicry gives you the power to take a d
 
 ## Take A Look
 
+!['Homepage'](https://github.com/devnorris/Mimicry/blob/master/reactbird/docs/home-page.png?raw=true)
+!['Utterances'](https://github.com/devnorris/Mimicry/blob/master/reactbird/docs/utterances-page.png?raw=true)
+!['Voices'](https://github.com/devnorris/Mimicry/blob/master/reactbird/docs/voices-page.png?raw=true)
 
 
 ## Dependencies
